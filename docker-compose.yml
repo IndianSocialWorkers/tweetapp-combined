@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  # My tweetapp frontend application
+  tweetappreact:
+    image: singhswaraj/tweetappreact:latest
+    container_name: tweetappreact
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/frontend
+      - ./frontend/node_modules
+    networks:
+      - elk
+
+  
+  # My tweetapp backend application
+  tweetapp:
+    image: singhswaraj/tweetapp:latest
+    container_name: tweetapp
+    ports:
+      - "8880:8880"
+    volumes:
+      - ./tweetapp/logs:/logs:rw
+    networks:
+      - elk
+    depends_on:
+      - tweetappreact
+
+
+networks:
+  elk:
+    driver: bridge
+
