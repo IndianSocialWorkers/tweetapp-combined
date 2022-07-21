@@ -12,9 +12,13 @@ services:
     environment:
       - HTTPS=true
       - DANGEROUSLY_DISABLE_HOST_CHECK=true
+      - SSL_CRT_FILE=/cert/certificate.crt
+      - SSL_KEY_FILE=/cert/privatekey.key
     volumes:
       - ./tweetappreact:/tweetappreact
       - ./tweetappreact/node_modules:/tweetappreact/node_modules
+      - ./cert/certificate.crt:/cert/certificate.crt:ro,Z
+      - ./cert/privatekey.key:/cert/privatekey.key:ro,Z
     networks:
       - elk
 
