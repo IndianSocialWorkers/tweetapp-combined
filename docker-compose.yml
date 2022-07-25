@@ -50,7 +50,7 @@ services:
 
   elasticsearch:
     build:
-      context: elasticsearch/
+      context: tooling/elasticsearch/
       args:
         ELASTIC_VERSION: ${ELASTIC_VERSION}
     volumes:
@@ -68,7 +68,7 @@ services:
 
   logstash:
     build:
-      context: logstash/
+      context: tooling/logstash/
       args:
         ELASTIC_VERSION: ${ELASTIC_VERSION}
     volumes:
